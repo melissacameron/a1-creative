@@ -23,7 +23,7 @@ passport.use(new TwitterStrategy({
         consumerKey: TWITTER_CONSUMER_KEY,
         consumerSecret: TWITTER_CONSUMER_SECRET,
         //PASTE YOUR CALLBACK URL HERE
-        callbackURL: "http://127.0.0.1:3000/auth/twitter/callback" 
+        callbackURL: "http://melcam-a1creative.herokuapp.com/auth/twitter/callback" 
     },
     function(token, tokenSecret, profile, done) {
         // asynchronous verification, for effect...
@@ -131,7 +131,7 @@ var conf = {
     client_id:      '642165729170682'
   , client_secret:  'd77af94f21bff559d5a5847530d9bee4'
   , scope:          'user_likes, basic_info, email, user_about_me, user_birthday, user_location, publish_stream, read_stream'
-  , redirect_uri:   'http://127.0.0.1:3000/auth/facebook'
+  , redirect_uri:   'http://melcam-a1creative.herokuapp.com/auth/facebook'
 };
 
 var graph = require('fbgraph');
