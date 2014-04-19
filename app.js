@@ -2,6 +2,7 @@
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var FacebookStrategy = require('passport-facebook-canvas');
 
 var TWITTER_CONSUMER_KEY = "S4keITke4Kvyl8pRxfvX8esEJ";
 var TWITTER_CONSUMER_SECRET = "ysHyuLxHfAkIBF0j8sZOQ7TNKlfgoHvwXffBGHxhnnWU1AHKqd";
@@ -37,6 +38,20 @@ passport.use(new TwitterStrategy({
         });
     }
 ));
+
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "http://melcam-a1creative.herokuapp.com/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+
+
 
 //dependencies for each module used
 var express = require('express');
@@ -217,3 +232,14 @@ T.get('statuses/user_timeline', { screen_name: 'mcameron200' },  function (err, 
     console.log(reply);
   });
 **/
+
+// passport-facebook-canvas
+app.get('/auth/facebook', passport.authenticate('facebook-canvas'));
+
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook-canvas', { successRedirect: '/',
+                                             failureRedirect: '/error' }));
+
+app.post('/auth/facebook/canvas', 
+  passport.authenticate('facebook-canvas', { successRedirect: '/',
+                                             failureRedirect: '/auth/facebook/canvas/autologin' }));
