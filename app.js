@@ -1,7 +1,7 @@
 
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+
 var FacebookStrategy = require('passport-facebook-canvas');
 
 var TWITTER_CONSUMER_KEY = "S4keITke4Kvyl8pRxfvX8esEJ";
@@ -243,4 +243,3 @@ app.post('/auth/facebook/canvas',
   passport.authenticate('facebook-canvas', { successRedirect: '/',
                                              failureRedirect: '/auth/facebook/canvas/autologin' }));
                                              **/
-                                             
