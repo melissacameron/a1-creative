@@ -51,7 +51,10 @@
       }
       .button:hover a { text-decoration: none;}
       .button h3 {margin-top:10px;}
-
+      h4 {text-align:center; max-width:500px; margin:0 auto;}
+      .recent-tweet { margin-top: 50px;}
+      .compliment { margin-top: 50px;}
+      .sub-heading { text-align: center; }
       .login-container {text-align:center; margin:50px auto;}
       </style>
 </head>
@@ -65,7 +68,15 @@
         <a class="button" href="/auth/facebook"><h3>Analyze my Facebook activity</h3></a>
         </div>
 
-        {{ post }}
+        <h3 class="sub-heading">{{ msg }}</h3>
+        <h4 class="recent-tweet">{{ recent }}</h4>
+        <h4 class="compliment">{{ compliment }} </h4>
+
+        <h3 class="sub-heading">{{ msg }}</h3>
+        <h4 class="recent-tweet">{{ recent }}</h4>
+        <h4 class="compliment">{{ compliment }} </h4>
+        <h1>{{ attr }}</h1>
+
     </div>
 
     <script src="https://code.jquery.com/jquery.js"></script>

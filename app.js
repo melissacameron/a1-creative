@@ -81,14 +81,9 @@ app.get('/auth/twitter/callback',
         res.redirect('/UserHasLoggedInTwitter');
     });
 
-//display a message in index.handlebars to check if user is really logged in
-app.get('/UserHasLoggedInTwitter', function(req, res) {
-    res.render('index', { msg: req.user.username + " is logged in to Twitter!" });
-});
-
 
 app.get('/tweets',	function(req, res)	{	
-	res.render('tweets');	
+	
 });
 
 
@@ -117,10 +112,17 @@ app.get('/twitter/statuses', function(req,res) {
 	})
 });
 
-
-var tweets = T.get('followers/ids', { screen_name: 'mcameron200' },  function (err, reply) {
+//display a message in index.handlebars to check if user is really logged in
+app.get('/UserHasLoggedInTwitter', function(req, res) {
+    
+    T.get('statuses/user_timeline', function (err, reply) {
+      res.render('index', { msg: "Analyzing " + req.user.username + "'s tweet history...", recent: "Your most recent tweet: '" + reply[0].text + "'", compliment: "Cool tweet!" });
+    //res.render('index', reply);
+    //console.log(reply);
+    console.log(reply[0].text);
+    //res.render('index', { recent: "Your most recent tweet: " + reply[0].text });
+  })
 });
-console.log(tweets);
 
 
 //FB GRAPH
@@ -168,8 +170,15 @@ app.get('/auth/facebook', function(req, res) {
 
 // user gets sent here after being authorized
 app.get('/UserHasLoggedIn', function(req, res) {
-  res.render("index", { title: "Logged In" });
+  //res.render("index", { title: "Logged In" });
+  //res.render('index', { attr: 'hull world' });
+  graph.get('/me/feed', function(err,res2) {
+    //res.send(res2); // sends text response to browser
+    res.render('index', { msg: "Analyzing your most recent Facebook post...", recent: res2.data[0].story, compliment: "Super cool post!" });
+    //console.log(res2.data[0].story);
+  })
 });
+
 
 //app.get('/UserHasLoggedIn', loggedin.getLikes);
 
