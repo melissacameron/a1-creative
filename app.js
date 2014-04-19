@@ -231,7 +231,6 @@ app.get('/twitter', function(req,res) {
 T.get('statuses/user_timeline', { screen_name: 'mcameron200' },  function (err, reply) {
     console.log(reply);
   });
-**/
 
 // passport-facebook-canvas
 app.get('/auth/facebook', passport.authenticate('facebook-canvas'));
@@ -243,3 +242,5 @@ app.get('/auth/facebook/callback',
 app.post('/auth/facebook/canvas', 
   passport.authenticate('facebook-canvas', { successRedirect: '/',
                                              failureRedirect: '/auth/facebook/canvas/autologin' }));
+                                             **/
+                                             
