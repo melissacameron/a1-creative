@@ -1,8 +1,8 @@
 
 var passport = require('passport');
 var TwitterStrategy = require('passport-twitter').Strategy;
-
-var FacebookStrategy = require('passport-facebook-canvas');
+//var FacebookStrategy = require('passport-facebook').Strategy;
+// var FacebookStrategy = require('passport-facebook-canvas');
 
 var TWITTER_CONSUMER_KEY = "S4keITke4Kvyl8pRxfvX8esEJ";
 var TWITTER_CONSUMER_SECRET = "ysHyuLxHfAkIBF0j8sZOQ7TNKlfgoHvwXffBGHxhnnWU1AHKqd";
@@ -38,7 +38,7 @@ passport.use(new TwitterStrategy({
         });
     }
 ));
-
+/**
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
@@ -50,7 +50,7 @@ passport.use(new FacebookStrategy({
     });
   }
 ));
-
+**/
 
 
 //dependencies for each module used
