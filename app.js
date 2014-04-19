@@ -171,7 +171,7 @@ app.get('/UserHasLoggedIn', function(req, res) {
   res.render("index", { title: "Logged In" });
 });
 
-app.get('/UserHasLoggedIn', loggedin.getLikes());
+//app.get('/UserHasLoggedIn', loggedin.getLikes);
 
 
 //Grab Facebook Likes
